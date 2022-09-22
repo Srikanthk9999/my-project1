@@ -4,7 +4,8 @@ import { AllstudentregistrationComponent } from './allstudentregistration/allstu
 import { AuthguardGuard } from './authguard.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { NotifyguardGuard } from './notifyguard.guard';
+import { NotifyGuard } from './notify.guard';
+
 import { StudentregistrationComponent } from './studentregistration/studentregistration.component';
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   {path:'dashboard', component: DashboardComponent, canActivate: [AuthguardGuard],
   children: [
 {path:'studentregistration', component: StudentregistrationComponent},
-{path: 'allstudentregistration', component: AllstudentregistrationComponent, canDeactivate:[NotifyguardGuard],},
+{path: 'allstudentregistration', component: AllstudentregistrationComponent, canDeactivate:[NotifyGuard],},
 {path: 'allstudentregistration-details',component: AllstudentregistrationComponent},
 
   

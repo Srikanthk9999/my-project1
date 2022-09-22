@@ -9,7 +9,12 @@ export class AuthguardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  if( sessionStorage.getItem('my-app-token')){
+      return true;
   }
-  
+  else{
+    alert('you are not authorized to access this page');
+    return  false;
+  }
+}
 }

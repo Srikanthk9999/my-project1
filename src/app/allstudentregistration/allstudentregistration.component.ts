@@ -18,7 +18,7 @@ export class AllstudentregistrationComponent implements OnInit {
   public order: string = '';
 
   constructor(
-    private _allstudentregistrationservice: AllstudentregistrationService
+    private _allstudentregistrationservice: AllstudentregistrationService, private router: Router
   ) {
     this._allstudentregistrationservice.getAllStudentregistration().subscribe(
       (data: any) => {
@@ -55,6 +55,12 @@ export class AllstudentregistrationComponent implements OnInit {
   }
   edit(id:string){
      
+    this.router.navigateByUrl('/dashboard/edit-allstudentregistration'+'/'+id);
+  }
+
+  view(id:string){
+    this.router.navigateByUrl('/dashboard/allstudentregistration-details'+'/'+id)
+
   }
   delete(id: string) {
     return this._allstudentregistrationservice
@@ -62,6 +68,7 @@ export class AllstudentregistrationComponent implements OnInit {
       .subscribe(
         (data: any) => {
           alert('deleted successfully !!!!');
+          location.reload();
         },
         (err: any) => {
           alert('internal server error');
