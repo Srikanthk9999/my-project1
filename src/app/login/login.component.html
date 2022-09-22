@@ -1,0 +1,16 @@
+<p>login works!</p>
+<div class="parent">
+    <form [formGroup]="loginForm">
+        <label>email</label>
+        <input type="text"formControlName="email">
+        <br><br>
+        <label>password</label>
+        <input type="password" formControlName="password">
+        <div class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?. invalid">
+            <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required</p>
+            <p *ngIf="loginForm.get('password')?.errors?.['pattern']">At least on uppercase, one lowercase, one special character,on digit </p>
+        </div>
+        <br><br>
+        <button (click)="submit()">login</button>
+    </form>
+</div>

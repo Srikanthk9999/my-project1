@@ -1,0 +1,96 @@
+<p>allstudentregistration works!</p>
+
+<input type="text" [(ngModel)]="filterTerm" />
+<button class="btn btn-primary" (click)="filter()">filter</button>
+
+<select [(ngModel)]="column">
+  <option>createdAt</option>
+  <option>Name</option>
+  <option>avatar</option>
+  <option>Id</option>
+  <option>Gender</option>
+  <option>mobile</option>
+  <option>Email</option>
+  <option>Batch </option>
+  <option>City</option>
+  <option>mandel></option>
+  <option>District</option>
+  <option>State</option>
+  <option>Pincode</option>
+  <option>Companyname</option>
+  <option>Location</option>
+  <option>package</option>
+  <option>OfferDate</option>
+  <option>sourcetype</option>
+  <option>Direct</option>
+  <option>Referalname </option>
+  
+
+</select>
+
+<select [(ngModel)]="order">
+  <option>asc</option>
+  <option>desc</option>
+</select>
+
+<button (click)="sort()">sort</button>
+
+<table border="1" class="table">
+  <thead>
+    <tr>
+      <th>created At</th>
+      <th>Name</th>
+      <th>avatar</th>
+      <th>Id</th>
+      <th>Gender</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Batch</th>
+      <th>City</th>
+      <th>mandel</th>
+      <th>District</th>
+      <th>State</th>
+      <th>Pincode</th>
+      <th>Companyname</th>
+      <th>Location</th>
+      <th>package</th>
+      <th>OfferDate</th>
+      <th>Sourcetype</th>
+      <th>Direct</th>
+      <th>Referalname</th>
+      <th>Source</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let allstudentregistration of allstudentregistration">
+      <td>{{ allstudentregistration.createdAt }}</td>
+      <td>{{ allstudentregistration.name }}</td>
+      <td>{{ allstudentregistration.avatar }}</td>
+      <td>{{ allstudentregistration.id }}</td>
+      <td>{{ allstudentregistration.gender }}</td>
+      <td>{{ allstudentregistration.mobile }}</td>
+      <td>{{ allstudentregistration.email }}</td>
+      <td>{{ allstudentregistration.batch }}</td>
+      <td>{{ allstudentregistration.address.city }}</td>
+      <td>{{ allstudentregistration.address.mandal }}</td>
+      <td>{{ allstudentregistration.address.district }}</td>
+      <td>{{ allstudentregistration.address.state }}</td>
+      <td>{{ allstudentregistration.address.pincode }}</td>
+
+      <td>{{ allstudentregistration.company.companyname }}</td>
+      <td>{{ allstudentregistration.company.location }}</td>
+      <td>{{ allstudentregistration.company.package }}</td>
+      <td>{{ allstudentregistration.company.offerdate }}</td>
+      <td>{{ allstudentregistration.sourcetype }}</td>
+      <td>{{ allstudentregistration.direct }}</td>
+      <td>{{ allstudentregistration.referalname }}</td>
+      <td>{{ allstudentregistration.source }}</td>
+
+      <td> <button class="btn btn-danger" (click)="delete(allstudentregistration.id)">Delete</button></td>
+    
+      <td> <button class="btn btn-primary" (click)="edit(allstudentregistration.id)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>

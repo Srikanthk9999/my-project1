@@ -1,0 +1,29 @@
+<p>studentregistration works!</p>
+
+<form [formGroup]="studentregistrationForm">
+  <label>name</label>
+  <input type="text" formControlName="name" >
+  <br />
+  <label>Mobile:</label>
+  <input type="number" formControlName="mobile">
+  <br />
+  <label>Gender:</label>
+  <input type="radio" formControlName="gender" >
+  <br />
+
+  <label>Email:</label>
+  <input type="email" formControlName="email"  >
+  <br />
+  <label>Batch:</label>
+  <input type="number" formControlName="batch">
+  <br />
+  <label>address:</label>
+  <br />
+  <label>District:</label>
+  <input type="text" formControlName="district">
+  <br />
+  <label>state:</label>
+  <input type="text" formControlName="state">
+  <br>
+  <button class="btn btn-primary" (click)="submit()">submit</button>
+</form>
