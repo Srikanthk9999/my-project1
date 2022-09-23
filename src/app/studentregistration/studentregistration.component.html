@@ -2,28 +2,150 @@
 
 <form [formGroup]="studentregistrationForm">
   <label>name</label>
-  <input type="text" formControlName="name" >
+  <input type="text" formControlName="name" />
+  <div
+    class="error"
+    *ngIf="
+      studentregistrationForm.get('name')?.touched &&
+      studentregistrationForm.get('name')?.invalid
+    "
+  >
+    <p *ngIf="studentregistrationForm.get('name')?.errors?.['required']">
+      name is required
+    </p>
+    <p *ngIf="studentregistrationForm.get('name')?.errors?.['minLength']">
+      minimum 10 chrs allowed
+    </p>
+    <p *ngIf="studentregistrationForm.get('name')?.errors?.['maxLenght']">
+      maximum 15 chrs allowed
+    </p>
+  </div>
+  <br />
+  <label>id</label>
+  <input type="number" formcontrol="id" />
   <br />
   <label>Mobile:</label>
-  <input type="number" formControlName="mobile">
+  <input type="number" formControlName="mobile" />
+  <div
+    class="error"
+    *ngIf="
+      studentregistrationForm.get('id')?.touched &&
+      studentregistrationForm.get('id')?.invalid
+    "
+  >
+    <p *ngIf="studentregistrationForm.get('id')?.errors?.['required']">
+      id is required
+    </p>
+    <p *ngIf="studentregistrationForm.get('id')?.errors?.['min']">
+      id is grathen 0
+    </p>
+    <p *ngIf="studentregistrationForm.get('id')?.errors?.['max']">
+      id is lessthan 100
+    </p>
+  </div>
   <br />
-  <label>Gender:</label>
-  <input type="radio" formControlName="gender" >
+  <label>gender:</label>
+  <label>male</label>
+  <input type="radio" name="gendr" formControlName="gender" />
+  <label>female</label>
+  <input type="radio" name="gendr" formControlName="gender" />
+  <label>others</label>
+  <input type="radio" name="gendr" formControlName="gender" />
   <br />
 
   <label>Email:</label>
-  <input type="email" formControlName="email"  >
+  <input type="email" formControlName="email" />
+  <div
+    class="error"
+    *ngIf="
+      studentregistrationForm.get('email')?.touched &&
+      studentregistrationForm.get('email')?.invalid
+    "
+  >
+    <p *ngIf="studentregistrationForm.get('email')?.errors?.['required']">
+      email is required
+    </p>
+    <p *ngIf="studentregistrationForm.get('email')?.errors?.['minLength']">
+      minimum 10 chrs allowed
+    </p>
+    <p *ngIf="studentregistrationForm.get('email')?.errors?.['maxLenght']">
+      maximum 20 chrs allowed
+    </p>
+  </div>
   <br />
   <label>Batch:</label>
-  <input type="number" formControlName="batch">
+  <input type="number" formControlName="batch" />
   <br />
-  <label>address:</label>
+  <div
+    class="error"
+    *ngIf="
+      studentregistrationForm.get('batch')?.touched &&
+      studentregistrationForm.get('batch')?.invalid
+    "
+  >
+    <p *ngIf="studentregistrationForm.get('batch')?.errors?.['required']">
+      batch is required
+    </p>
+    <p *ngIf="studentregistrationForm.get('batch')?.errors?.['min']">
+      batch is above 2000
+    </p>
+    <p *ngIf="studentregistrationForm.get('batch')?.errors?.['max']">
+      batch is below 2999
+    </p>
+  </div>
+  <div formGroupName="address">
+    <label>District:</label>
+    <input type="text" formControlName="district" />
+    <br />
+    <div
+      class="error"
+      *ngIf="
+        studentregistrationForm.get('address')?.get('district')?.touched &&
+        studentregistrationForm.get('address')?.get('district')?.invalid
+      "
+    >
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('district')?.errors?.['required']"
+      >
+        is required
+      </p>
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('district')?.errors?.['minLength']"
+      >
+        minimum 15 chars required
+      </p>
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('district')?.errors?.['maxLength']"
+      >
+        maximum 20 chars allowed
+      </p>
+    </div>
+    <label>state:</label>
+    <input type="text" formControlName="state" />
+    <div
+      class="errror"
+      *ngIf="
+        studentregistrationForm.get('address')?.get('state')?.touched &&
+        studentregistrationForm.get('address')?.get('state')?.invalid
+      "
+    >
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('state')?.errors?.['required']"
+      >
+        is required
+      </p>
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('state')?.errors?.['minLength']"
+      >
+        minimum 15 chars required
+      </p>
+      <p
+        *ngIf="studentregistrationForm.get('address')?.get('state')?.errors?.['maxLength']"
+      >
+        maximum 20 chars allowed
+      </p>
+    </div>
+  </div>
   <br />
-  <label>District:</label>
-  <input type="text" formControlName="district">
-  <br />
-  <label>state:</label>
-  <input type="text" formControlName="state">
-  <br>
-  <button class="btn btn-primary" (click)="submit()">submit</button>
+  <button (click)="submit()">submit</button>
 </form>

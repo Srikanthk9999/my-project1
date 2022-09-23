@@ -21,24 +21,34 @@ export class AllstudentregistrationService {
     );
   }
   getFilterAllstudentRegistration(
-    filterTerm: string
+    value: string
   ): Observable<Allstudentregistration[]> {
     return this._httpClient.get<Allstudentregistration[]>(
       'https://62b9299dff109cd1dc8ca34f.mockapi.io/students' +
         '?filter=' +
-        filterTerm
+        value
+    );
+  }
+
+  getpagedAllstudentRegistration(
+    pageNo: number
+  ): Observable<Allstudentregistration[]> {
+    return this._httpClient.get<Allstudentregistration[]>(
+      'https://62b9299dff109cd1dc8ca34f.mockapi.io/students' +
+        '?limit=10page=1' +
+        pageNo
     );
   }
 
   getSortedAllstudentRegistration(
-    column: number,
-    order: number
+    column: string,
+    order: string
   ): Observable<Allstudentregistration[]> {
     return this._httpClient.get<Allstudentregistration[]>(
       'https://62b9299dff109cd1dc8ca34f.mockapi.io/students' +
         '?sortBy=' +
         column +
-        '&order' +
+        '&order=' +
         order
     );
   }
@@ -62,15 +72,11 @@ export class AllstudentregistrationService {
     );
   }
 
- 
-
   DeleteAllstudentRegistration(
     id: string
   ): Observable<Allstudentregistration[]> {
-    return this._httpClient.get<Allstudentregistration[]>(
+    return this._httpClient.delete<Allstudentregistration[]>(
       'https://62b9299dff109cd1dc8ca34f.mockapi.io/students' + '/' + id
     );
   }
 }
-
-

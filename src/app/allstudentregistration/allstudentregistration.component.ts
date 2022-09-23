@@ -18,7 +18,8 @@ export class AllstudentregistrationComponent implements OnInit {
   public order: string = '';
 
   constructor(
-    private _allstudentregistrationservice: AllstudentregistrationService, private router: Router
+    private _allstudentregistrationservice: AllstudentregistrationService,
+    private router: Router
   ) {
     this._allstudentregistrationservice.getAllStudentregistration().subscribe(
       (data: any) => {
@@ -32,18 +33,31 @@ export class AllstudentregistrationComponent implements OnInit {
 
   ngOnInit(): void {}
   filter() {
-    this._allstudentregistrationservice.getAllStudentregistration().subscribe(
-      (data: any) => {
-        this.allstudentregistration = data;
+    this._allstudentregistrationservice
+      .getFilterAllstudentRegistration(this.filterTerm)
+      .subscribe(
+        (data: any) => {
+          this.allstudentregistration = data;
+          alert('seccc');
+        },
+        (err: any) => {
+          alert('internal server error');
+        }
+      );
+  }
+  page(pageNo: number){
+    this._allstudentregistrationservice.getpagedAllstudentRegistration(pageNo).subscribe(
+      (data:any)=>{
+        this.allstudentregistration=data;
       },
-      (err: any) => {
+      (err:any)=>{
         alert('internal server error');
       }
-    );
+    )
   }
   sort() {
-    return this._allstudentregistrationservice
-      .getAllStudentregistration()
+    this._allstudentregistrationservice
+      .getSortedAllstudentRegistration(this.column, this.order)
       .subscribe(
         (data: any) => {
           this.allstudentregistration = data;
@@ -53,26 +67,29 @@ export class AllstudentregistrationComponent implements OnInit {
         }
       );
   }
-  edit(id:string){
-     
-    this.router.navigateByUrl('/dashboard/edit-allstudentregistration'+'/'+id);
-  }
 
-  view(id:string){
-    this.router.navigateByUrl('/dashboard/allstudentregistration-details'+'/'+id)
-
-  }
   delete(id: string) {
     return this._allstudentregistrationservice
-      .getAllStudentregistration()
+      .DeleteAllstudentRegistration(id)
       .subscribe(
         (data: any) => {
           alert('deleted successfully !!!!');
-          location.reload();
+         
         },
         (err: any) => {
           alert('internal server error');
         }
       );
+  }
+  edit(id: string) {
+    this.router.navigateByUrl(
+      '/dashboard/edit-allstudentregistration' + '/' + id
+    );
+  }
+
+  view(id: string) {
+    this.router.navigateByUrl(
+      '/dashboard/allstudentregistration-details' + '/' + id
+    );
   }
 }
